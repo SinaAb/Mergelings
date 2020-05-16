@@ -13,10 +13,11 @@ import (
 type heuristic func(b Board) float64
 
 func weighted_heuristic(b Board) float64 {
-	weight := [4][4]float64{{13, 14, 15, 16},
-						  	{8, 7, 6, 5},
-						 	{1, 2, 3, 4},
-						 	{2, 1, 0.5, 0.25}}
+	weight := [4][4]float64{{30, 31, 32, 64},
+						  	{16, 15, 14, 13},
+						 	{5, 6, 7, 8},
+						 	{4, 3, 2, 1}}
+
 
 	rating := 0.00
 
@@ -160,14 +161,30 @@ func main(){
 	game.init()
 	println(game.str())
 
+	bomb := false
+
 	for {
 		//get the best move
-		best := branch_dfs(game, 9, weighted_heuristic)
+		best := branch_dfs(game, 7, weighted_heuristic)
 
 		//make the move
 		if game.move(best) == 1 {
-			println("Game Over")
-			os.Exit(1)
+			//if the bomb isn't used bomb the field
+			if !bomb {
+				for i := 0; i < 4; i++ {
+					for j := 0; j < 4; j++ {
+						if game.board[i][j] <= 4 {
+							game.board[i][j] = 0
+						}
+					}
+				}
+				println("Bombed")
+				bomb = true
+			} else {
+				println("Game Over")
+				os.Exit(1)
+			}
+
 		}
 
 		//print the board

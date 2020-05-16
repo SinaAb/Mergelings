@@ -88,7 +88,7 @@ func (b *Board) move_up() int{
 	var i = rand.Intn(len(spots))
 
 	//place the random piece
-	b.board[3][spots[i]] = int( math.Exp2( float64( rand.Intn(3) ) ) )
+	b.board[3][spots[i]] = int( math.Exp2( float64( rand.Intn(2) ) ) )
 
 	return 0
 }
@@ -145,7 +145,7 @@ func (b *Board) move_down() int{
 	var i = rand.Intn(len(spots))
 
 	//place the random piece
-	b.board[0][spots[i]] = int( math.Exp2( float64( rand.Intn(3) ) ) )
+	b.board[0][spots[i]] = int( math.Exp2( float64( rand.Intn(2) ) ) )
 
 	return 0
 }
@@ -202,7 +202,7 @@ func (b *Board) move_right() int {
 	var i = rand.Intn(len(spots))
 
 	//place the random piece
-	b.board[spots[i]][0] = int( math.Exp2( float64( rand.Intn(3) ) ) )
+	b.board[spots[i]][0] = int( math.Exp2( float64( rand.Intn(2) ) ) )
 
 	return 0
 }
@@ -259,7 +259,7 @@ func (b *Board) move_left() int {
 	var i = rand.Intn(len(spots))
 
 	//place the random piece
-	b.board[spots[i]][3] = int( math.Exp2( float64( rand.Intn(3) ) ) )
+	b.board[spots[i]][3] = int( math.Exp2( float64( rand.Intn(2) ) ) )
 
 	return 0
 }
